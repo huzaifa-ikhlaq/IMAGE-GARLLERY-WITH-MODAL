@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.layout-container {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+    columns: 5 200px;
+    column-gap: 6px;
+}
+
+img{
+    display: block;
+    margin-bottom: 6px  ;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

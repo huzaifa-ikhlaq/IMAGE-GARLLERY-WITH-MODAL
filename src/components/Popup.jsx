@@ -177,10 +177,16 @@ export default function Popup({ initialIndex, setIsOpen }) {
         }
     }, [currentIndex]);
 
+    useEffect(() => {
+        document.body.classList.add("overflow-hidden");
+        return () => document.body.classList.remove("overflow-hidden");
+    }, []);
+
+
 
 
     return (
-        <div className="w-full h-screen bg-black fixed top-0 left-0  z-40 flex flex-col justify-center items-center pt-10">
+        <div className="w-full h-screen bg-black fixed top-0 left-0  z-40 flex flex-col justify-center items-center pt-10 ">
             <span className='absolute right-6 top-3 cursor-pointer' onClick={() => setIsOpen(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 15 15"><path fill="#fff" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" strokeWidth="0.5" stroke="#fff" /></svg>
             </span>
@@ -241,7 +247,7 @@ export default function Popup({ initialIndex, setIsOpen }) {
             </div>
 
             {/* Thumbnails */}
-            <div className="mt-6 flex gap-2 overflow-x-auto px-4 max-w-full scrollbar-hide">
+            <div className="mt-6 flex gap-2 overflow-x-auto h-[15%]  max-w-full scrollbar-hide">
                 {images.map((img, index) => (
                     <img
                         key={index}
@@ -252,7 +258,7 @@ export default function Popup({ initialIndex, setIsOpen }) {
                             setIsTransitioning(true);
                             setCurrentIndex(index + 1); // +1 because of clone
                         }}
-                        className={`w-28 h-20 object-cover rounded-md cursor-pointer border-2 ${index === (currentIndex - 1 + images.length) % images.length
+                        className={`min-w-30 h-20 object-cover rounded-md cursor-pointer border-2 hover:border-white ${index === (currentIndex - 1 + images.length) % images.length
                             ? "border-white scale-102"
                             : "border-transparent"
                             } transition-transform`}
